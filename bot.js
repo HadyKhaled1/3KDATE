@@ -1,35 +1,39 @@
-const Eris = require("eris");
-var bot = new Eris("NDgzMzIxNzEzNTgxNDkwMTc5.DmRv_w.w6ge-P8EyFqytwsNAeeJYFSQc7c");
-var id = "483321492172439574";
-//** لاتعدل على شي تحت ذا **//
-bot.on("ready", () => {
-onstart();
-});
+ client.on('message',async message => {
+    if(message.content.startsWith(prefix + "setmembers")) {
+    if(!message.guild.member(message.author).hasPermissions('MANAGE_CHANNELS')) return message.reply('❌ **ليس لديك الصلاحيات الكافية**');
+    if(!message.guild.member(client.user).hasPermissions(['MANAGE_CHANNELS','MANAGE_ROLES_OR_PERMISSIONS'])) return message.reply('❌ **ليس معي الصلاحيات الكافية**');
+    message.channel.send('✅| **تم عمل الروم بنجاح**');
+    message.guild.createChannel(`Voice Online : [ ${message.guild.members.filter(m => m.voiceChannel).size} ]` , 'voice').then(c => {
+      console.log(`Done make room in: \n ${message.guild.name}`);
+      c.overwritePermissions(message.guild.id, {
+        CONNECT: false,
+        SPEAK: false
+      });
+      setInterval(() => {
+        c.setName(`Members : [ ${message.guild.members.size} ]`)
+      },1000);
+    });
+    }
+  }); 
 
-function onstart(){
 
-setInterval(function(){
 
-var currentTime = new Date(),
-hours = currentTime.getHours() + 0 ,
-minutes = currentTime.getMinutes(),
-seconds = currentTime.getSeconds();
 
-if (minutes < 10) {
-minutes = "0" + minutes;
-}
-var suffix = "صباحاَ";
-if (hours >= 12) {
-suffix = "مساء";
-hours = hours - 12;
-}
-if (hours == 0) {
-hours = 12;
-}
 
-bot.editChannel(id, { name : "●⌠ " + "الوقت : " + hours + ":" + minutes + " " + suffix + " ⌡●"});
-}, 60000);
-
-}
-
-bot.connect();
+ client.on('message',async message => {
+    if(message.content.startsWith(prefix + "setbot")) {
+    if(!message.guild.member(message.author).hasPermissions('MANAGE_CHANNELS')) return message.reply('❌ **ليس لديك الصلاحيات الكافية**');
+    if(!message.guild.member(client.user).hasPermissions(['MANAGE_CHANNELS','MANAGE_ROLES_OR_PERMISSIONS'])) return message.reply('❌ **ليس معي الصلاحيات الكافية**');
+    message.channel.send('✅| **تم عمل الروم بنجاح**');
+    message.guild.createChannel(`Voice Online : [ ${message.guild.members.filter(m => m.voiceChannel).size} ]` , 'voice').then(c => {
+      console.log(`Done make room in: \n ${message.guild.name}`);
+      c.overwritePermissions(message.guild.id, {
+        CONNECT: false,
+        SPEAK: false
+      });
+      setInterval(() => {
+        c.setName(`Bots : [ ${message.guild.members.filter(m=>m.user.bot).size} ]`)
+      },1000);
+    });
+    }
+  }); 
