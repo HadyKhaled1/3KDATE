@@ -58,7 +58,7 @@ hours = 12;
            
   }
  
-});(!message.guild.member(client.user).hasPermissions(['MANAGE_CHANNELS','MANAGE_ROLES_OR_PERMISSIONS'])) return message.reply('❌ **ليس معي الصلاحيات الكافية**');
+if (!message.member.hasPermissions(['MANAGE_CHANNELS', 'MANAGE_ROLES'])){ return message.reply('**ليس لدي الصلاحيات الكافية**');
   message.channel.send('✅| **تم عمل الروم بنجاح**');
   message.guild.createChannel(`Voice Online : [ ${message.guild.members.filter(m => m.voiceChannel).size} ]` , 'voice').then(c => {
     console.log(`Voice online channel setup for guild: \n ${message.guild.name}`);
