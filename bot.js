@@ -74,7 +74,7 @@ if (!message.member.hasPermissions(['MANAGE_CHANNELS', 'MANAGE_ROLES'])){ return
 });
 
 client.on('ready', () => {
-     client.user.setActivity("تجربة",{type: 'WATCHING'});
+     client.user.setActivity("3K Server",{type: 'Playing'});
 
 });
 
