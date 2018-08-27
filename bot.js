@@ -92,18 +92,23 @@ if (!message.member.hasPermissions(['MANAGE_CHANNELS', 'MANAGE_ROLES'])){ return
     }
   }); 
 
-   client.on('message', message => {
-    if(message.content == '!members') {
-    const embed = new Discord.RichEmbed()
-    .setDescription(`**Members info🔋
-:green_heart: online:   ${message.guild.members.filter(m=>m.presence.status == 'online').size}
-:heart:dnd:       ${message.guild.members.filter(m=>m.presence.status == 'dnd').size}
-:yellow_heart: idle:      ${message.guild.members.filter(m=>m.presence.status == 'idle').size}
-:black_heart: offline:   ${message.guild.members.filter(m=>m.presence.status == 'offline').size}
-:blue_heart:   all:  ${message.guild.memberCount}**`)
-         message.channel.send({embed});
-     }
-  });
+    client.on('message',async message => {
+    if(message.content.startsWith(prefix + "setmembers")) {
+    if(!message.guild.member(message.author).hasPermissions('MANAGE_CHANNELS')) return message.reply('❌ **ليس لديك الصلاحيات الكافية**');
+    if(!message.guild.member(client.user).hasPermissions(['MANAGE_CHANNELS','MANAGE_ROLES_OR_PERMISSIONS'])) return message.reply('❌ **ليس معي الصلاحيات الكافية**');
+    message.channel.send('✅| **تم عمل الروم بنجاح**');
+    message.guild.createChannel(`Voice Online : [ ${message.guild.members.filter(m => m.voiceChannel).size} ]` , 'voice').then(c => {
+      console.log(`Done make room in: \n ${message.guild.name}`);
+      c.overwritePermissions(message.guild.id, {
+        CONNECT: false,
+        SPEAK: false
+      });
+      setInterval(() => {
+        c.setName(`Members : [ ${message.guild.members.size} ]`)
+      },1000);
+    });
+    }
+  }); 
 
  client.on('message',async message => {
     if(message.content.startsWith(prefix + "setbot")) {
