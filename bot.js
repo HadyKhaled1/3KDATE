@@ -66,4 +66,5 @@ client.on('message', message => {
       .addField(':arrow_right:| Server Members',`${message.guild.memberCount}`)
       message.channel.send(IzRo);
     });
+
   client.login(process.env.BOT_TOKEN);
