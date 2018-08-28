@@ -81,12 +81,6 @@ client.on('message',async message => {
   });
   }
 });
-
-client.on('ready' HadyKhaled => {
-    console.log('hi')
-    client.user.setGame('test')
-});
-
  client.on('message',async message => {
     if(message.content.startsWith(prefix + "setmembers")) {
     if(!message.guild.member(message.author).hasPermissions('MANAGE_CHANNELS')) return message.reply('❌ **ليس لديك الصلاحيات الكافية**');
