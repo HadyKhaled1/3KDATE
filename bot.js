@@ -120,5 +120,5 @@ client.on('message',async message => {
 
 client.on('ready', () => {
      client.user.setActivity("3K Server",{type: 'Playing'});
-
-  client.login(process.env.BOT_TOKEN);
+})
+client.login(process.env.BOT_TOKEN);
