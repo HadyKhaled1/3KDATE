@@ -118,8 +118,35 @@ client.on('message',async message => {
     });
     }
   }); 
-
-client.on('ready', () => {
-     client.user.setActivity("3K Server",{type: 'Playing'});
-})
+let idd= "442670807240671252"
+ if (message.content.startsWith(prefix + 'playing')) {
+          if (msg.author.id !== idd) return;
+        client.user.setGame(argresult);
+          message.channel.sendMessage(`**${argresult}** : تم تغيير الحالة`)
+      } else
+      if (message.content.startsWith(prefix + 'streem')) {
+          if (msg.author.id !== idd) return;
+        client.user.setGame(argresult, "http://twitch.tv/y04zgamer");
+          message.channel.sendMessage(`**${argresult}** :تم تغيير الحالة الى ستريمنج`)
+      } else
+      
+      if (message.content.startsWith(prefix + 'setname')) {
+          if (msg.author.id !== idd) return;
+        client.user.setUsername(argresult).then
+            message.channel.sendMessage(`**${argresult}** : تم تغير الأسم`)
+        return message.reply("**لا تستطيع تغير الأسم الا بعد ساعتين**");
+      } else
+      
+      if (message.content.startsWith(prefix + 'setavatar')) {
+          if (msg.author.id !== idd) return;
+        client.user.setAvatar(argresult);
+          message.channel.sendMessage(`**${argresult}** : تم تغير صورة البوت`);
+      } else
+      
+      
+      if (message.content.startsWith(prefix + 'watching')) {
+          if (msg.author.id !== idd) return;
+        client.user.setActivity(argresult, {type : 'watching'});
+       message.channel.sendMessage(`**${argresult}** : تم تغيير الووتشينق الى`)
+      }
 client.login(process.env.BOT_TOKEN);
