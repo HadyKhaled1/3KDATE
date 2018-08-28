@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
+var prefix = "*"
 client.on('message',async msg => {
      if(msg.channel.type === "dm") return;
   if(msg.author.bot) return;
